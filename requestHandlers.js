@@ -297,10 +297,7 @@ function getPosImage(response,request){
     response.end();
 }
 
-
-
 var users = {};
-
 function setUserImage(response,request){
     let user = querystring.parse(url.parse(request.url).query).user;
     let artcode = querystring.parse(url.parse(request.url).query).artcode;
@@ -314,17 +311,10 @@ function setUserImage(response,request){
         userimage['artcode'] = artcode;
         userimage['imagepath'] = imagepathlet;
         users[user] = userimage;
-
-        //logtext.log('setUserImage ' + artcode + ' user ' + user);
     }
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write('OK');
     response.end();
-
-    /*users[user].imagepath = '<div><img height=150 src="';
-    users[user].imagepath += 'https://www.rybray.com.ua/get-image.php?sku=' + artcode;
-    users[user].imagepath += '"/></div>';*/
-
 }
 
 exports.setUserImage = setUserImage;

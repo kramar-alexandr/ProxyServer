@@ -14189,3 +14189,227 @@
 [2017-04-20 09:33:33.070] [TRACE] [default] - Request handler 'index' was called.
 [2017-04-20 09:35:01.916] [TRACE] [default] - Server has started.
 [2017-04-20 09:35:07.213] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 11:32:47.473] [TRACE] [default] - Server has started.
+[2017-04-27 11:33:01.783] [TRACE] [default] - No request handler found for /favicon.ico
+[2017-04-27 11:36:00.807] [TRACE] [default] - Server has started.
+[2017-04-27 11:37:36.930] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:37:36.939] [ERROR] [default] - SyntaxError: Unexpected end of JSON input
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/Hansa/ProxyServer/backups.js:25:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-27 11:40:20.281] [TRACE] [default] - HTTP/1.1 400 Bad Request
+[2017-04-27 11:41:16.913] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:41:16.914] [ERROR] [default] - SyntaxError: Unexpected token ' in JSON at position 1
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/Hansa/ProxyServer/backups.js:25:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-27 11:41:32.219] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:41:32.220] [ERROR] [default] - SyntaxError: Unexpected token ' in JSON at position 2
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/Hansa/ProxyServer/backups.js:25:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-27 11:44:05.771] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:57:50.986] [TRACE] [default] - Server has started.
+[2017-04-27 11:57:53.999] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:58:27.022] [TRACE] [default] - Server has started.
+[2017-04-27 11:58:29.619] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:59:19.130] [TRACE] [default] - Server has started.
+[2017-04-27 11:59:22.583] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 11:59:22.587] [TRACE] [default] - file not found
+[2017-04-27 12:00:11.731] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:00:11.732] [TRACE] [default] - myfile already exists
+[2017-04-27 12:07:20.627] [TRACE] [default] - Server has started.
+[2017-04-27 12:07:25.965] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:07:42.238] [TRACE] [default] - myfile already exists
+[2017-04-27 12:08:06.795] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:08:25.655] [TRACE] [default] - myfile already exists
+[2017-04-27 12:09:06.695] [TRACE] [default] - Server has started.
+[2017-04-27 12:09:21.784] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:09:38.051] [TRACE] [default] - myfile already exists
+[2017-04-27 12:13:12.436] [TRACE] [default] - Server has started.
+[2017-04-27 12:13:18.718] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:14:10.077] [TRACE] [default] - Server has started.
+[2017-04-27 12:14:13.134] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:14:13.145] [TRACE] [default] - GZ Start
+[2017-04-27 12:14:13.150] [TRACE] [default] - GZ End
+[2017-04-27 12:14:33.970] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:14:33.971] [TRACE] [default] - GZ Start
+[2017-04-27 12:14:33.973] [TRACE] [default] - GZ End
+[2017-04-27 12:22:19.982] [TRACE] [default] - Server has started.
+[2017-04-27 12:22:25.735] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:22:25.744] [TRACE] [default] - GZ Start
+[2017-04-27 12:22:42.506] [TRACE] [default] - Server has started.
+[2017-04-27 12:22:47.349] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 12:22:47.357] [TRACE] [default] - GZ Start
+[2017-04-27 12:22:47.363] [TRACE] [default] - GZ End
+[2017-04-27 12:22:50.568] [TRACE] [default] - done
+[2017-04-27 14:05:45.916] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 14:05:56.085] [TRACE] [default] - Server has started.
+[2017-04-27 14:06:06.567] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 14:06:07.125] [TRACE] [default] - No request handler found for /favicon.ico
+[2017-04-27 14:07:11.954] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 14:07:11.957] [TRACE] [default] - GZ Start
+[2017-04-27 14:07:11.962] [TRACE] [default] - GZ End
+[2017-04-27 14:09:04.806] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 14:09:08.660] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 14:09:19.125] [TRACE] [default] - Request handler 'index' was called.
+[2017-04-27 14:18:23.684] [TRACE] [default] - done
+[2017-04-27 14:35:27.308] [TRACE] [default] - Server has started.
+[2017-04-27 14:35:50.254] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 14:35:50.257] [TRACE] [default] - GZIP Start
+[2017-04-27 14:35:53.612] [TRACE] [default] - GZIP Done
+[2017-04-27 14:35:53.613] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log.gz
+[2017-04-27 14:44:14.784] [TRACE] [default] - Server has started.
+[2017-04-27 14:44:37.658] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 14:44:37.661] [TRACE] [default] - GZIP Start
+[2017-04-27 14:44:40.655] [TRACE] [default] - GZIP Done
+[2017-04-27 14:44:40.658] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 15:22:32.832] [TRACE] [default] - Server has started.
+[2017-04-27 15:23:58.584] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:23:58.587] [TRACE] [default] - GZIP Start
+[2017-04-27 15:24:01.664] [TRACE] [default] - GZIP Done
+[2017-04-27 15:24:01.665] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 15:24:48.886] [TRACE] [default] - Server has started.
+[2017-04-27 15:24:51.757] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:24:51.759] [TRACE] [default] - file not found
+[2017-04-27 15:25:01.274] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:25:01.275] [TRACE] [default] - file not found
+[2017-04-27 15:25:27.690] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:25:27.690] [TRACE] [default] - GZIP Start
+[2017-04-27 15:25:30.410] [TRACE] [default] - GZIP Done
+[2017-04-27 15:25:30.412] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 15:27:53.979] [TRACE] [default] - Server has started.
+[2017-04-27 15:27:59.419] [TRACE] [default] - Server has started.
+[2017-04-27 15:28:02.429] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:28:02.432] [TRACE] [default] - file not found
+[2017-04-27 15:28:11.600] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:28:11.601] [TRACE] [default] - file not found
+[2017-04-27 15:29:14.599] [TRACE] [default] - Server has started.
+[2017-04-27 15:29:18.320] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:29:18.322] [TRACE] [default] - file not found
+[2017-04-27 15:29:20.819] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:29:20.820] [TRACE] [default] - file not found
+[2017-04-27 15:29:44.032] [TRACE] [default] - Server has started.
+[2017-04-27 15:29:48.051] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:29:48.054] [TRACE] [default] - file not found
+[2017-04-27 15:29:48.055] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:29:48.055] [TRACE] [default] - 2121
+[2017-04-27 15:29:48.057] [TRACE] [default] - ftpuser
+[2017-04-27 15:29:48.057] [TRACE] [default] - polask123
+[2017-04-27 15:31:17.264] [TRACE] [default] - Server has started.
+[2017-04-27 15:31:21.576] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:31:21.579] [TRACE] [default] - file not found
+[2017-04-27 15:31:21.579] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:31:21.580] [TRACE] [default] - 2121
+[2017-04-27 15:31:21.581] [TRACE] [default] - ftpuser
+[2017-04-27 15:31:21.581] [TRACE] [default] - polask123
+[2017-04-27 15:33:01.998] [TRACE] [default] - Server has started.
+[2017-04-27 15:33:06.687] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:33:06.690] [TRACE] [default] - file not found
+[2017-04-27 15:33:06.691] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:33:06.691] [TRACE] [default] - 2121
+[2017-04-27 15:33:06.693] [TRACE] [default] - ftpuser
+[2017-04-27 15:33:06.693] [TRACE] [default] - polask123
+[2017-04-27 15:33:47.583] [TRACE] [default] - Server has started.
+[2017-04-27 15:33:52.970] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:33:52.973] [TRACE] [default] - file not found
+[2017-04-27 15:33:52.973] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:33:52.974] [TRACE] [default] - 2121
+[2017-04-27 15:33:52.975] [TRACE] [default] - ftpuser
+[2017-04-27 15:33:52.976] [TRACE] [default] - polask123
+[2017-04-27 15:35:16.297] [TRACE] [default] - Server has started.
+[2017-04-27 15:35:21.304] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:35:21.307] [TRACE] [default] - file not found
+[2017-04-27 15:35:21.307] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:35:21.308] [TRACE] [default] - 2121
+[2017-04-27 15:35:21.309] [TRACE] [default] - ftpuser
+[2017-04-27 15:35:21.310] [TRACE] [default] - polask123
+[2017-04-27 15:36:39.250] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:36:39.251] [TRACE] [default] - file not found
+[2017-04-27 15:36:39.251] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:36:39.252] [TRACE] [default] - 2121
+[2017-04-27 15:36:39.252] [TRACE] [default] - ftpadmin
+[2017-04-27 15:36:39.252] [TRACE] [default] - polask123
+[2017-04-27 15:37:10.738] [TRACE] [default] - Server has started.
+[2017-04-27 15:37:14.398] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:37:14.401] [TRACE] [default] - file not found
+[2017-04-27 15:37:14.401] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:37:14.402] [TRACE] [default] - 2121
+[2017-04-27 15:37:14.403] [TRACE] [default] - ftpadmin
+[2017-04-27 15:37:14.403] [TRACE] [default] - polask123
+[2017-04-27 15:48:37.493] [TRACE] [default] - Server has started.
+[2017-04-27 15:48:43.159] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:48:43.162] [TRACE] [default] - file not found
+[2017-04-27 15:48:43.163] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:48:43.163] [TRACE] [default] - 2121
+[2017-04-27 15:48:43.165] [TRACE] [default] - ftpadmin
+[2017-04-27 15:48:43.165] [TRACE] [default] - polask123
+[2017-04-27 15:51:44.761] [TRACE] [default] - Server has started.
+[2017-04-27 15:51:49.633] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:51:49.636] [TRACE] [default] - file not found
+[2017-04-27 15:51:49.636] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:51:49.636] [TRACE] [default] - 2121
+[2017-04-27 15:51:49.638] [TRACE] [default] - ftpadmin
+[2017-04-27 15:51:49.638] [TRACE] [default] - polask123
+[2017-04-27 15:51:59.922] [TRACE] [default] - Server has started.
+[2017-04-27 15:52:05.168] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:52:05.171] [TRACE] [default] - file not found
+[2017-04-27 15:52:05.172] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:52:05.172] [TRACE] [default] - 2121
+[2017-04-27 15:52:05.174] [TRACE] [default] - ftpadmin
+[2017-04-27 15:52:05.174] [TRACE] [default] - polask123
+[2017-04-27 15:53:00.825] [TRACE] [default] - Server has started.
+[2017-04-27 15:53:07.572] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:53:07.574] [TRACE] [default] - file not found
+[2017-04-27 15:53:07.575] [TRACE] [default] - 195.69.87.106
+[2017-04-27 15:53:07.575] [TRACE] [default] - 2121
+[2017-04-27 15:53:07.577] [TRACE] [default] - ftpadmin
+[2017-04-27 15:53:07.577] [TRACE] [default] - polask123
+[2017-04-27 15:58:59.162] [TRACE] [default] - Server has started.
+[2017-04-27 15:59:17.279] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:59:17.281] [TRACE] [default] - GZIP Start
+[2017-04-27 15:59:20.416] [TRACE] [default] - GZIP Done
+[2017-04-27 15:59:20.417] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 15:59:43.848] [TRACE] [default] - Server has started.
+[2017-04-27 15:59:57.042] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 15:59:57.045] [TRACE] [default] - GZIP Start
+[2017-04-27 15:59:59.734] [TRACE] [default] - GZIP Done
+[2017-04-27 15:59:59.734] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 16:00:32.484] [TRACE] [default] - Server has started.
+[2017-04-27 16:00:43.622] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 16:00:43.625] [TRACE] [default] - GZIP Start
+[2017-04-27 16:00:47.075] [TRACE] [default] - GZIP Done
+[2017-04-27 16:00:47.076] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 16:07:44.801] [TRACE] [default] - Server has started.
+[2017-04-27 16:07:48.677] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 16:07:48.679] [TRACE] [default] - file not found
+[2017-04-27 16:08:03.812] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 16:08:03.813] [TRACE] [default] - GZIP Start
+[2017-04-27 16:08:06.837] [TRACE] [default] - GZIP Done
+[2017-04-27 16:08:06.839] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
+[2017-04-27 16:10:20.430] [TRACE] [default] - Server has started.
+[2017-04-27 16:10:33.983] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 16:10:33.986] [ERROR] [default] - SyntaxError: Unexpected string in JSON at position 75
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/Hansa/ProxyServer/backups.js:27:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-04-27 16:10:45.444] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-04-27 16:10:45.446] [TRACE] [default] - GZIP Start
+[2017-04-27 16:10:48.355] [TRACE] [default] - GZIP Done
+[2017-04-27 16:10:48.356] [TRACE] [default] - Delete file /Users/alexandr/Hansa/ODESSA server/hansa.log
