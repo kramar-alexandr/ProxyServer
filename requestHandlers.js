@@ -1,3 +1,4 @@
+
 var logtext = require('./logtext');
 var SMTPConnection = require('smtp-connection');
 var nodemailer = require('nodemailer');
@@ -237,7 +238,7 @@ function getProxyRequest(response,request) {
 
 function index(response,request){
     //let data = fs.createReadStream('Index.html');
-    //console.log(request + 'sdfdfsd');    
+    //console.log(request + 'sdfdfsd');
     let user = querystring.parse(url.parse(request.url).query).user;
     if (user) {
       users[user] = null;
