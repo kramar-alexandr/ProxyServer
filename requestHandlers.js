@@ -238,6 +238,9 @@ function getProxyRequest(response,request) {
 function index(response,request){
     //let data = fs.createReadStream('Index.html');
     let user = querystring.parse(url.parse(request.url).query).user;
+    if (user) {
+      users[user] = null;
+    }
     fs.readFile('./Index.html', function(err, data){
         if (err) {
             response.writeHead(200, {   "Content-Type": "text/html",
