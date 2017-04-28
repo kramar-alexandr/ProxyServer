@@ -14,7 +14,7 @@ handle["/getCurTime"] = requestHandlers.getCurTime;
 handle["/index"] = requestHandlers.index;
 handle["/getPosImage"] = requestHandlers.getPosImage;
 handle["/setUserImage"] = requestHandlers.setUserImage;
-
+handle["/setUserImageUsingAbsPath"] = requestHandlers.setUserImageUsingAbsPath;
 handle["/copyFileToFTP"] = backups.copyFileToFTP;
 
 server.start(router.route, handle);

@@ -317,6 +317,51 @@ function setUserImage(response,request){
     response.end();
 }
 
+function setUserImageUsingAbsPath(response,request){
+    let user = querystring.parse(url.parse(request.url).query).user;
+    let artcode = querystring.parse(url.parse(request.url).query).artcode;
+    let filepathC = querystring.parse(url.parse(request.url).query).filepathC;
+    let imagepathlet = '';
+    if (user) {
+      users[user] = null;
+    }
+    //logtext.log('filepathC ' + filepathC + ' user ' + user + ' artcode ' + artcode);
+    if (filepathC) {
+      try{
+        fs.readFile(filepathC, function(err, data) {
+          if (err) logtext.log(err); //throw err; // Fail if the file can't be read.
+          if (data) {
+            imagepathlet += '<div><img height=300px src="data:image/jpeg;base64,';
+            imagepathlet += new Buffer(data).toString('base64');
+            imagepathlet += '"/></div>';
+            let userimage = {};
+            userimage['user'] = user;
+            userimage['artcode'] = artcode;
+            userimage['imagepath'] = imagepathlet;
+            users[user] = userimage;
+          }
+        });
+      }catch (err) {
+        logtext.log(err);
+      }
+    }
+    else {
+      imagepathlet = '<h1>No image for item ' + artcode + '</h1>';
+    }
+
+    if(user){
+        let userimage = {};
+        userimage['user'] = user;
+        userimage['artcode'] = artcode;
+        userimage['imagepath'] = imagepathlet;
+        users[user] = userimage;
+    }
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write('OK');
+    response.end();
+}
+
+exports.setUserImageUsingAbsPath = setUserImageUsingAbsPath;
 exports.setUserImage = setUserImage;
 exports.getPosImage = getPosImage;
 exports.getCurTime = getCurTime;
