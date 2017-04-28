@@ -237,6 +237,7 @@ function getProxyRequest(response,request) {
 
 function index(response,request){
     //let data = fs.createReadStream('Index.html');
+    //console.log(request + 'sdfdfsd');    
     let user = querystring.parse(url.parse(request.url).query).user;
     if (user) {
       users[user] = null;
@@ -256,7 +257,7 @@ function index(response,request){
         response.write(data);
         response.end();
     });
-    logtext.log("Request handler 'index' was called.");
+    logtext.log("Request handler 'index' was called.111");
 }
 
 function getCurTime(response,request){
