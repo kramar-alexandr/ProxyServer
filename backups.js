@@ -9,6 +9,10 @@ const https = require('https');
 const http = require('http');
 const AdmZip = require('adm-zip');
 var ftpClient = require('ftp');
+//const sftp = require('whoosh');
+//var scp = require('scp');
+var client = require('scp2');
+
 
 function copyFileToFTP(response,request){
     response.writeHead(200, {"Content-Type": "text/html"});
@@ -42,28 +46,75 @@ function copyFileToFTP(response,request){
                             if (exists) {
                                 logtext.log('Delete file ' + dataobj.folder + dataobj.filename);
                                 fs.unlink(dataobj.folder + dataobj.filename);
-                                let c = new ftpClient();
-                                let cdata = {
-                                    host:  dataobj.host,
-                                    port: dataobj.port,
-                                    user: dataobj.user,
-                                    password: dataobj.passwd
-                                };
-                                c.connect(cdata);
+                                if(dataobj.protocol=="FTP"){
+                                    let c = new ftpClient();
+                                    let cdata = {
+                                        host:  dataobj.host,
+                                        port: dataobj.port,
+                                        user: dataobj.user,
+                                        password: dataobj.passwd
+                                    };
+                                    c.connect(cdata);
 
-                                c.on('ready', function() {
+                                    c.on('ready', function() {
 
-                                    c.put(dataobj.folder + dataobj.filename + '.gz',dataobj.backuppath + '/' + dataobj.filename + '.gz',function(){
-                                        console.log(dataobj.filename + '.gz');
-                                        console.log(dataobj.backuppath + '/' + dataobj.filename + '.gz');
-                                        console.log('put');
-                                        c.end();
+                                        c.put(dataobj.folder + dataobj.filename + '.gz',dataobj.backuppath + '/' + dataobj.filename + '.gz',function(){
+                                            console.log(dataobj.filename + '.gz');
+                                            console.log(dataobj.backuppath + '/' + dataobj.filename + '.gz');
+                                            console.log('put');
+                                            c.end();
+                                        });
+
                                     });
+                                    c.on('error',function(error){
+                                        console.log(error);
+                                    });
+                                }
+                                if(dataobj.protocol=="SFTP"){
+                                    client.scp(dataobj.folder + dataobj.filename + '.gz', {
+                                        host: dataobj.host,
+                                        port:dataobj.port,
+                                        username: dataobj.user,
+                                        password: dataobj.passwd,
+                                        path: dataobj.backuppath
+                                    }, function(err) {
+                                        if(err){
+                                            logtext.log(err);
+                                        }else{
+                                            logtext.log('UploadComplite');
+                                        }
+                                    })
 
-                                });
-                                c.on('error',function(error){
-                                    console.log(error);
-                                });
+                                    /*let options = {
+                                      file: dataobj.folder + dataobj.filename + '.gz',
+                                      user: dataobj.user,
+                                      host: dataobj.host,
+                                      port: dataobj.port,
+                                      path: dataobj.backuppath,
+                                      password: dataobj.passwd
+                                    }
+                                    scp.send(options, function (err) {
+                                      if (err) console.log(err);
+                                      else console.log('File transferred.');
+                                  });*/
+
+
+                                    /*sftp.connect({
+                                        hostname: dataobj.host,
+                                        port: dataobj.port,
+                                        username: dataobj.user,
+                                        password: dataobj.passwd
+                                    }, (err, client) => {
+                                        if (err) throw err
+                                        client.putContent(fs.createReadStream(dataobj.folder + dataobj.filename + '.gz').read, dataobj.backuppath + dataobj.filename + '.gz', (err, stats) => {
+                                            if (err) throw err
+                                                client.disconnect(() => {
+                                                if (err) throw err
+                                                console.log(`Uploaded ${stats.bytes} bytes in ${stats.duration} ms`)
+                                            })
+                                        })
+                                    })*/
+                                }
 
 
 

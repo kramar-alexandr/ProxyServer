@@ -15118,3 +15118,124 @@
 [2017-04-27 18:43:06.035] [TRACE] [default] - Request handler 'index' was called.111
 [2017-04-28 13:46:25.575] [TRACE] [default] - Server has started.
 [2017-04-28 13:49:22.016] [TRACE] [default] - Server has started.
+[2017-05-05 14:36:50.259] [TRACE] [default] - Server has started.
+[2017-05-05 14:41:54.877] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:41:54.882] [ERROR] [default] - SyntaxError: Unexpected token , in JSON at position 146
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/JavaScript/ProxyServer/backups.js:28:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-05-05 14:42:25.108] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:42:25.110] [TRACE] [default] - file not found
+[2017-05-05 14:42:52.670] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:42:52.671] [TRACE] [default] - GZIP Start
+[2017-05-05 14:42:54.450] [TRACE] [default] - GZIP Done
+[2017-05-05 14:42:54.451] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:43:46.724] [TRACE] [default] - Server has started.
+[2017-05-05 14:43:56.972] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:43:56.978] [TRACE] [default] - GZIP Start
+[2017-05-05 14:43:59.047] [TRACE] [default] - GZIP Done
+[2017-05-05 14:43:59.049] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:44:59.714] [TRACE] [default] - Server has started.
+[2017-05-05 14:45:09.442] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:45:09.451] [TRACE] [default] - GZIP Start
+[2017-05-05 14:45:11.753] [TRACE] [default] - GZIP Done
+[2017-05-05 14:45:11.754] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:46:38.755] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:46:38.756] [TRACE] [default] - GZIP Start
+[2017-05-05 14:46:40.553] [TRACE] [default] - GZIP Done
+[2017-05-05 14:46:40.554] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:47:24.759] [TRACE] [default] - Server has started.
+[2017-05-05 14:47:28.111] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:47:28.137] [TRACE] [default] - file not found
+[2017-05-05 14:47:37.447] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:47:37.449] [TRACE] [default] - GZIP Start
+[2017-05-05 14:47:39.112] [TRACE] [default] - GZIP Done
+[2017-05-05 14:47:39.114] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:48:51.234] [TRACE] [default] - Server has started.
+[2017-05-05 14:48:54.251] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:48:54.259] [TRACE] [default] - file not found
+[2017-05-05 14:49:08.045] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:49:08.046] [TRACE] [default] - GZIP Start
+[2017-05-05 14:49:09.553] [TRACE] [default] - GZIP Done
+[2017-05-05 14:49:09.555] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:51:14.745] [TRACE] [default] - Server has started.
+[2017-05-05 14:51:23.533] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:51:23.539] [TRACE] [default] - file not found
+[2017-05-05 14:51:33.814] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:51:33.815] [TRACE] [default] - GZIP Start
+[2017-05-05 14:51:35.262] [TRACE] [default] - GZIP Done
+[2017-05-05 14:51:35.263] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:53:52.314] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:53:52.315] [TRACE] [default] - GZIP Start
+[2017-05-05 14:53:53.771] [TRACE] [default] - GZIP Done
+[2017-05-05 14:53:53.772] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 14:56:07.047] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 14:56:07.049] [TRACE] [default] - GZIP Start
+[2017-05-05 14:56:08.483] [TRACE] [default] - GZIP Done
+[2017-05-05 14:56:08.485] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 15:02:38.842] [TRACE] [default] - Server has started.
+[2017-05-05 15:02:45.438] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 15:02:45.444] [TRACE] [default] - file not found
+[2017-05-05 15:02:57.832] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 15:02:57.833] [TRACE] [default] - GZIP Start
+[2017-05-05 15:02:59.281] [TRACE] [default] - GZIP Done
+[2017-05-05 15:02:59.282] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 15:49:54.789] [TRACE] [default] - Server has started.
+[2017-05-05 15:50:02.441] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 15:50:02.446] [TRACE] [default] - file not found
+[2017-05-05 15:50:20.710] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 15:50:20.711] [TRACE] [default] - GZIP Start
+[2017-05-05 15:50:23.859] [TRACE] [default] - GZIP Done
+[2017-05-05 15:50:23.860] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 16:10:54.783] [TRACE] [default] - Server has started.
+[2017-05-05 16:10:58.896] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:10:58.902] [TRACE] [default] - file not found
+[2017-05-05 16:11:25.172] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:11:25.174] [TRACE] [default] - GZIP Start
+[2017-05-05 16:11:27.614] [TRACE] [default] - GZIP Done
+[2017-05-05 16:11:27.616] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 16:19:28.970] [TRACE] [default] - Server has started.
+[2017-05-05 16:19:45.454] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:19:45.460] [TRACE] [default] - GZIP Start
+[2017-05-05 16:19:48.723] [TRACE] [default] - GZIP Done
+[2017-05-05 16:19:48.725] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 16:21:49.421] [TRACE] [default] - Server has started.
+[2017-05-05 16:22:00.948] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:22:00.967] [TRACE] [default] - GZIP Start
+[2017-05-05 16:22:04.300] [TRACE] [default] - GZIP Done
+[2017-05-05 16:22:04.303] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 16:22:05.607] [TRACE] [default] - UploadComplite
+[2017-05-05 16:22:26.797] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:22:26.798] [TRACE] [default] - GZIP Start
+[2017-05-05 16:22:29.583] [TRACE] [default] - GZIP Done
+[2017-05-05 16:22:29.587] [TRACE] [default] - Delete file /Users/alexandr/JavaScript/bigfile.txt
+[2017-05-05 16:22:31.958] [TRACE] [default] - { Error: All configured authentication methods failed
+    at tryNextAuth (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:294:17)
+    at SSH2Stream.onUSERAUTH_FAILURE (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:473:5)
+    at emitTwo (events.js:106:13)
+    at SSH2Stream.emit (events.js:191:7)
+    at parsePacket (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:3647:10)
+    at SSH2Stream._transform (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:551:13)
+    at SSH2Stream.Transform._read (_stream_transform.js:167:10)
+    at SSH2Stream._read (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:212:15)
+    at SSH2Stream.Transform._write (_stream_transform.js:155:12)
+    at doWrite (_stream_writable.js:307:12)
+    at writeOrBuffer (_stream_writable.js:293:5) level: 'client-authentication' }
+[2017-05-05 16:22:32.032] [TRACE] [default] - { Error: All configured authentication methods failed
+    at tryNextAuth (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:294:17)
+    at SSH2Stream.onUSERAUTH_FAILURE (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:473:5)
+    at emitTwo (events.js:106:13)
+    at SSH2Stream.emit (events.js:191:7)
+    at parsePacket (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:3647:10)
+    at SSH2Stream._transform (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:551:13)
+    at SSH2Stream.Transform._read (_stream_transform.js:167:10)
+    at SSH2Stream._read (/Users/alexandr/JavaScript/ProxyServer/node_modules/scp2/node_modules/ssh2-streams/lib/ssh.js:212:15)
+    at SSH2Stream.Transform._write (_stream_transform.js:155:12)
+    at doWrite (_stream_writable.js:307:12)
+    at writeOrBuffer (_stream_writable.js:293:5) level: 'client-authentication' }
+[2017-05-05 16:22:51.532] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-05 16:22:51.533] [TRACE] [default] - file not found
