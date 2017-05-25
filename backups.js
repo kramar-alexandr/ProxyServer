@@ -15,6 +15,18 @@ var client = require('scp2');
 
 
 function copyFileToFTP(response,request){
+    //INput json
+    //  folder - folder to file
+    //  filename - filename to archive
+    //  protocol - FTP or SFTP
+    //  host
+    //  port
+    //  user
+    //  passwd
+    //  backuppath - path for file in backup side
+    //
+
+
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write('OK');
     response.end();
