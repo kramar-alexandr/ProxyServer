@@ -4,6 +4,7 @@ var nodemailer = require('nodemailer');
 const url = require('url');
 var querystring = require("querystring");
 var fs = require("fs");
+var fsnew = require("fs");
 var formidable = require("formidable");
 const https = require('https');
 const http = require('http');
@@ -26,6 +27,21 @@ function copyFileToFTP(response,request){
     //  backuppath - path for file in backup side
     //
 
+  /*
+{
+"folder":"",
+"filename":"",
+"protocol":"",
+"host":"",
+"port":"",
+"user":"",
+"passwd":"",
+"backuppath":""
+}
+
+
+  */
+
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write('OK');
@@ -41,8 +57,12 @@ function copyFileToFTP(response,request){
     request.addListener('end', function() {
         try {
             let dataobj = JSON.parse(data);
-
+            if(dataobj.folder[dataobj.folder.length-1]!='/'){
+              dataobj.folder = dataobj.folder + '/';
+            }
+            logtext.log(dataobj.folder[dataobj.folder.length-1]);
             if(dataobj.folder + dataobj.filename){
+                let filenotfound = false;
                 fs.exists(dataobj.folder + dataobj.filename, (exists) => {
                   if (exists) {
                     logtext.log('GZIP Start');
@@ -95,41 +115,8 @@ function copyFileToFTP(response,request){
                                         }else{
                                             logtext.log('UploadComplite');
                                         }
-                                    })
-
-                                    /*let options = {
-                                      file: dataobj.folder + dataobj.filename + '.gz',
-                                      user: dataobj.user,
-                                      host: dataobj.host,
-                                      port: dataobj.port,
-                                      path: dataobj.backuppath,
-                                      password: dataobj.passwd
-                                    }
-                                    scp.send(options, function (err) {
-                                      if (err) console.log(err);
-                                      else console.log('File transferred.');
-                                  });*/
-
-
-                                    /*sftp.connect({
-                                        hostname: dataobj.host,
-                                        port: dataobj.port,
-                                        username: dataobj.user,
-                                        password: dataobj.passwd
-                                    }, (err, client) => {
-                                        if (err) throw err
-                                        client.putContent(fs.createReadStream(dataobj.folder + dataobj.filename + '.gz').read, dataobj.backuppath + dataobj.filename + '.gz', (err, stats) => {
-                                            if (err) throw err
-                                                client.disconnect(() => {
-                                                if (err) throw err
-                                                console.log(`Uploaded ${stats.bytes} bytes in ${stats.duration} ms`)
-                                            })
-                                        })
-                                    })*/
+                                    });
                                 }
-
-
-
                             } else {
                                 logtext.log('GZIP file not found');
                             }
@@ -137,9 +124,71 @@ function copyFileToFTP(response,request){
                     });
 
                   } else {
-                    logtext.log('file not found');
+                    filenotfound = true;
+                    logtext.log('file not found ' + dataobj.folder + dataobj.filename);
+                    if(filenotfound){
+                      logtext.log('try found file ' + dataobj.folder + dataobj.filename + '.gz');
+                      fsnew.exists(dataobj.folder + dataobj.filename + '.gz', (existsnew) => {
+                        if (existsnew) {
+                          logtext.log('file found ' + dataobj.folder + dataobj.filename + '.gz');
+                          if(dataobj.protocol=="FTP"){
+                              let c = new ftpClient();
+                              let cdata = {
+                                  host:  dataobj.host,
+                                  port: dataobj.port,
+                                  user: dataobj.user,
+                                  password: dataobj.passwd
+                              };
+                              c.connect(cdata);
+
+                              c.on('ready', function() {
+
+                                  c.put(dataobj.folder + dataobj.filename + '.gz',dataobj.backuppath + '/' + dataobj.filename + '.gz',function(){
+                                      console.log(dataobj.filename + '.gz');
+                                      console.log(dataobj.backuppath + '/' + dataobj.filename + '.gz');
+                                      console.log('put');
+                                      c.end();
+                                  });
+
+                              });
+                              c.on('error',function(error){
+                                  console.log(error);
+                              });
+                          }
+                          if(dataobj.protocol=="SFTP"){
+                              logtext.log('Prepare to SFTP transfer');
+                              try{
+                                logtext.log(dataobj.folder + dataobj.filename + '.gz');
+                              client.scp(dataobj.folder + dataobj.filename + '.gz', {
+                                  host: dataobj.host,
+                                  port:dataobj.port,
+                                  username: dataobj.user,
+                                  password: dataobj.passwd,
+                                  path: dataobj.backuppath
+                              }, function(err) {
+                                  if(err){
+                                      logtext.log(err);
+                                  }else{
+                                      logtext.log('UploadComplite');
+                                  }
+                              });
+                            }catch(e){
+                              return logtext.error(e);
+                            }
+                          }
+                        }else {logtext.log('GZIP file not found');}
+                      });
+                    }
                   }
                 });
+                if(filenotfound){
+                  logtext.log('try found file ' + dataobj.folder + dataobj.filename + '.gz');
+                  fsnew.exists(dataobj.folder + dataobj.filename + '.gz', (exists1) => {
+                    if (exists1) {
+                      logtext.log('file found ' + dataobj.folder + dataobj.filename + '.gz');
+                    }
+                  });
+                }
             }
 
         } catch (e) {
