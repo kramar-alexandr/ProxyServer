@@ -113,67 +113,6 @@ function requestfun(res,dataobj){
   });
 }
 
-function sendMail(response,request){
-    logtext.log("Request handler 'sendMail' was called.");
-    let data = '';
-
-    request.addListener('data', function(chunk) {
-      data += chunk;
-    });
-    request.addListener('end', function() {
-        try {
-            var dataobj = JSON.parse(data);
-            response.writeHead(200, {"Content-Type": "text/html"});
-            response.write("JSON OK");
-            response.end();
-
-            let options = {
-                //service : "Gmail",
-                port : dataobj.port,
-                host : dataobj.host,
-                auth : {
-                    type : "login",
-                    user : dataobj.user,
-                    pass : dataobj.pass
-                },
-                authMethod : "PLAIN",
-                secure : dataobj.secure
-            };
-            let defaults = {};
-
-            let transporter = nodemailer.createTransport(options,defaults);
-            // verify connection configuration
-            transporter.verify(function(error, success) {
-               if (error) {
-                    logtext.log(error);
-               } else {
-                    logtext.log('Server is ready to take our messages');
-                    let message = {
-                        from: dataobj.from,
-                        to: dataobj.to,
-                        subject: dataobj.subject,
-                        text: dataobj.message + '\n',
-                        attachments : dataobj.attachments
-                        //html: '<p>HTML version of the ' + dataobj.message + '</p>'
-                    };
-                    transporter.sendMail(message, function(err){
-                        if(err){
-                            logtext.log(err);
-                        }
-                    });
-               }
-            });
-
-        } catch (e) {
-            response.writeHead(200, {"Content-Type": "text/html"});
-            response.write("ERROR JSON");
-            response.end();
-            logtext.error(data);
-            return logtext.error(e);
-        }
-    });
-}
-
 function getProxyRequest(response,request) {
     var data = '';
     logtext.log("Request handler 'getProxyRequest' was called.");
@@ -188,17 +127,37 @@ function getProxyRequest(response,request) {
             response.writeHead(200, {"Content-Type": "text/html"});
             response.write("JSON OK");
             response.end();
-
+            let conttype = 'text/xml';
+            if(dataobj.contenttype){
+                conttype = dataobj.contenttype;
+            }
+            let method = "POST";
+            if(dataobj.method){
+                method = dataobj.method;
+            }
+            let clenth = 0;
+            if(dataobj.xmldata){
+                clenth = Buffer.byteLength(dataobj.xmldata);
+            }
             let options = {
               hostname: dataobj.host,
               port: dataobj.port,
               path: dataobj.page,
-              method: 'POST',
+              method: method,
               headers: {
-                'Content-Type': 'text/xml',
-                'Content-Length': Buffer.byteLength(dataobj.xmldata)
+                'Content-Type': conttype,
+                'Content-Length': clenth
               }
             };
+            if(dataobj.Authorization){
+                options.headers['Authorization'] = dataobj.Authorization;
+            }
+            if(dataobj.Accept){
+                options.headers['Accept'] = dataobj.Accept;
+            }
+
+            console.log(dataobj.xmldata);
+            console.log(options);
             logtext.log('Prepare to request to ' + dataobj.host + ':' + dataobj.port + ' ' + dataobj.page);
             try {
                 if(dataobj.https==true){
@@ -208,8 +167,12 @@ function getProxyRequest(response,request) {
                         logtext.error("ERROR REQUEST");
                         return logtext.error(err);
                     });
-
-                    req.write(dataobj.xmldata);
+                    if(dataobj.xmldata){
+                        req.write(dataobj.xmldata);
+                    }else{
+                        req.write("OK");
+                    }
+                    logtext.error(dataobj.xmldata);
                     req.end();
                 }else{
                     //logtext.log('HTTP');
@@ -258,7 +221,7 @@ function index(response,request){
         response.write(data);
         response.end();
     });
-    logtext.log("Request handler 'index' was called.111");
+    logtext.log("Request handler 'index' was called.");
 }
 
 function getCurTime(response,request){
@@ -370,7 +333,6 @@ exports.setUserImageUsingAbsPath = setUserImageUsingAbsPath;
 exports.setUserImage = setUserImage;
 exports.getPosImage = getPosImage;
 exports.getCurTime = getCurTime;
-exports.sendMail = sendMail;
 exports.getProxyRequest = getProxyRequest;
 exports.start = start;
 exports.upload = upload;
