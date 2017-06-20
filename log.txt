@@ -15239,3 +15239,185 @@
     at writeOrBuffer (_stream_writable.js:293:5) level: 'client-authentication' }
 [2017-05-05 16:22:51.532] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
 [2017-05-05 16:22:51.533] [TRACE] [default] - file not found
+[2017-05-25 20:38:59.173] [TRACE] [default] - Server has started.
+[2017-05-25 20:46:27.467] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:46:27.470] [ERROR] [default] - SyntaxError: Unexpected end of JSON input
+    at Object.parse (native)
+    at IncomingMessage.<anonymous> (/Users/alexandr/ProxyServer/backups.js:43:32)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2017-05-25 20:51:42.548] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:51:42.550] [TRACE] [default] - file not found
+[2017-05-25 20:51:59.140] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:51:59.140] [TRACE] [default] - GZIP Start
+[2017-05-25 20:51:59.194] [TRACE] [default] - GZIP Done
+[2017-05-25 20:51:59.195] [TRACE] [default] - Delete file /Users/alexandr/test.xls
+[2017-05-25 20:52:19.204] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 20:52:19.222] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 20:54:00.040] [TRACE] [default] - Server has started.
+[2017-05-25 20:54:03.312] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:54:03.315] [TRACE] [default] - /
+[2017-05-25 20:54:03.316] [TRACE] [default] - GZIP Start
+[2017-05-25 20:54:03.365] [TRACE] [default] - GZIP Done
+[2017-05-25 20:54:03.366] [TRACE] [default] - Delete file /Users/alexandr/test.xls
+[2017-05-25 20:54:23.376] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 20:54:23.395] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 20:54:57.860] [TRACE] [default] - Server has started.
+[2017-05-25 20:55:01.011] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:55:01.013] [TRACE] [default] - /
+[2017-05-25 20:55:01.014] [TRACE] [default] - file not found
+[2017-05-25 20:55:17.099] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 20:55:17.099] [TRACE] [default] - /
+[2017-05-25 20:55:17.100] [TRACE] [default] - GZIP Start
+[2017-05-25 20:55:17.145] [TRACE] [default] - GZIP Done
+[2017-05-25 20:55:17.146] [TRACE] [default] - Delete file /Users/alexandr/test.xls
+[2017-05-25 20:55:37.154] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 20:55:37.174] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 21:02:42.045] [TRACE] [default] - Server has started.
+[2017-05-25 21:02:54.543] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:02:54.546] [TRACE] [default] - /
+[2017-05-25 21:05:38.647] [TRACE] [default] - Server has started.
+[2017-05-25 21:05:42.496] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:05:42.498] [TRACE] [default] - /
+[2017-05-25 21:08:06.334] [TRACE] [default] - Server has started.
+[2017-05-25 21:08:10.199] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:08:10.203] [TRACE] [default] - /
+[2017-05-25 21:08:31.283] [TRACE] [default] - Server has started.
+[2017-05-25 21:08:40.936] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:08:40.938] [TRACE] [default] - /
+[2017-05-25 21:11:52.426] [TRACE] [default] - Server has started.
+[2017-05-25 21:11:55.269] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:11:55.272] [TRACE] [default] - /
+[2017-05-25 21:11:55.273] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:13:58.120] [TRACE] [default] - Server has started.
+[2017-05-25 21:14:00.360] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:14:00.363] [TRACE] [default] - /
+[2017-05-25 21:14:47.044] [TRACE] [default] - Server has started.
+[2017-05-25 21:14:49.634] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:14:49.637] [TRACE] [default] - /
+[2017-05-25 21:19:59.800] [TRACE] [default] - Server has started.
+[2017-05-25 21:20:04.004] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:20:04.007] [TRACE] [default] - /
+[2017-05-25 21:21:20.435] [TRACE] [default] - Server has started.
+[2017-05-25 21:21:29.819] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:21:29.821] [TRACE] [default] - /
+[2017-05-25 21:24:09.791] [TRACE] [default] - Server has started.
+[2017-05-25 21:24:13.811] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:24:13.815] [TRACE] [default] - /
+[2017-05-25 21:24:13.815] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:24:13.816] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:24:13.816] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:24:47.872] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:24:47.873] [TRACE] [default] - /
+[2017-05-25 21:24:47.873] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:24:47.873] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:24:47.873] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:25:46.475] [TRACE] [default] - Server has started.
+[2017-05-25 21:25:49.689] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:25:49.692] [TRACE] [default] - /
+[2017-05-25 21:25:49.693] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:25:49.693] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:25:49.693] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:26:09.703] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 21:26:09.724] [TRACE] [default] - { Error: Timed out while waiting for handshake
+    at Timeout._onTimeout (/Users/alexandr/ProxyServer/node_modules/scp2/node_modules/ssh2/lib/client.js:569:19)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5) level: 'client-timeout' }
+[2017-05-25 21:26:38.925] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:26:38.925] [TRACE] [default] - /
+[2017-05-25 21:26:38.926] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:26:38.926] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:26:38.926] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:27:55.840] [TRACE] [default] - Server has started.
+[2017-05-25 21:28:09.453] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:28:09.456] [TRACE] [default] - /
+[2017-05-25 21:28:09.457] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:28:09.457] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:28:09.457] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:28:09.457] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:29:40.856] [TRACE] [default] - Server has started.
+[2017-05-25 21:29:51.939] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:29:51.942] [TRACE] [default] - /
+[2017-05-25 21:29:51.943] [TRACE] [default] - GZIP Start
+[2017-05-25 21:29:51.993] [TRACE] [default] - GZIP Done
+[2017-05-25 21:29:51.993] [TRACE] [default] - Delete file /Users/alexandr/test.xls
+[2017-05-25 21:31:17.125] [TRACE] [default] - Server has started.
+[2017-05-25 21:31:20.003] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:31:20.006] [TRACE] [default] - /
+[2017-05-25 21:31:20.007] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:31:20.007] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:31:20.008] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:31:20.008] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:33:14.432] [TRACE] [default] - Server has started.
+[2017-05-25 21:33:17.048] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:33:17.051] [TRACE] [default] - /
+[2017-05-25 21:33:17.052] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:33:17.052] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:33:17.052] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:33:17.053] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:34:07.014] [TRACE] [default] - Server has started.
+[2017-05-25 21:34:09.716] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:34:09.718] [TRACE] [default] - /
+[2017-05-25 21:34:09.719] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:34:09.719] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:34:09.720] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:34:09.720] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:37:47.092] [TRACE] [default] - Server has started.
+[2017-05-25 21:37:55.274] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:37:55.276] [TRACE] [default] - /
+[2017-05-25 21:37:55.277] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:37:55.277] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:37:55.277] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:37:55.277] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:38:16.319] [TRACE] [default] - Server has started.
+[2017-05-25 21:38:18.710] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:38:18.713] [TRACE] [default] - /
+[2017-05-25 21:38:18.714] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:38:18.715] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:38:18.715] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:38:18.715] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:39:19.431] [TRACE] [default] - Server has started.
+[2017-05-25 21:39:24.710] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:39:24.714] [TRACE] [default] - /
+[2017-05-25 21:39:24.715] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:39:24.715] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:39:24.715] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:39:24.715] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:39:24.715] [TRACE] [default] - /Users/alexandr/test.xls.gz
+[2017-05-25 21:44:24.757] [TRACE] [default] - Server has started.
+[2017-05-25 21:44:27.390] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:44:27.393] [TRACE] [default] - /
+[2017-05-25 21:44:27.394] [TRACE] [default] - file not found /Users/alexandr/test.xls
+[2017-05-25 21:44:27.394] [TRACE] [default] - try found file /Users/alexandr/test.xls.gz
+[2017-05-25 21:44:27.395] [TRACE] [default] - file found /Users/alexandr/test.xls.gz
+[2017-05-25 21:44:27.395] [TRACE] [default] - Prepare to SFTP transfer
+[2017-05-25 21:44:27.395] [TRACE] [default] - /Users/alexandr/test.xls.gz
+[2017-05-25 21:44:28.901] [TRACE] [default] - UploadComplite
+[2017-05-25 21:44:56.249] [TRACE] [default] - Server has started.
+[2017-05-25 21:45:58.821] [TRACE] [default] - Request handler 'copyFileToFTP' was called.
+[2017-05-25 21:45:58.824] [TRACE] [default] - /
+[2017-05-25 21:45:58.825] [TRACE] [default] - GZIP Start
