@@ -1,3 +1,5 @@
+'use strict'
+
 var logtext = require('./logtext');
 var SMTPConnection = require('smtp-connection');
 var nodemailer = require('nodemailer');
@@ -13,7 +15,8 @@ var ftpClient = require('ftp');
 //const sftp = require('whoosh');
 //var scp = require('scp');
 var client = require('scp2');
-
+var join = require('path').join;
+var archiver = require('archiver');
 
 function copyFileToFTP(response,request){
     //INput json
@@ -199,4 +202,164 @@ function copyFileToFTP(response,request){
 
 }
 
+function sendBackupFilesThroughSSH()
+{
+  var backupScenarios = [{
+    idName: "FM_Daily",
+    pathToBackupFiles: "C:/Program Files/FileMaker/FileMaker Server/Data/Backups",
+    fileNameTemplate: "Daily_",
+    maxBackupFilesToServer: 2,
+    runSendBackupFilesAtTime: "19:00",
+    targetDirectory: "/usr/..."
+  },
+  {
+    idName: "FM_Weekly"
+  }];
+  var backupsInfoHolder = [];
+  var prevDoneBackupsList;
+
+  logtext.log("\n\n\n");
+  logtext.log("Start backuping...");
+
+  let idNameList = {};
+  let error = false;
+  for (var i = 0; i < backupScenarios.length; i++) {
+    if (backupScenarios[i].hasOwnProperty('idName') == false) {
+      logtext.log("'idName' property undefined");
+      error = true;
+    }
+    if (!error) {
+      if (idNameList.hasOwnProperty(backupScenarios[i].idName) == false) {
+        idNameList[backupScenarios[i].idName] = true;
+      } else {
+        logtext.log("ID name '" + backupScenarios[i].idName + "' is not unique!");
+        error = true;
+      }
+    }
+    if (error) {
+      logtext.log("Backuping process interrupted");
+      return;
+    }
+  }
+
+  if (fs.existsSync(__dirname + "/doneBackupsList.txt")) {
+    try {
+      prevDoneBackupsList = JSON.parse(fs.readFileSync(__dirname + "/doneBackupsList.txt", 'utf8'));
+    } catch (err) {
+        logtext.log("JSON parse error: \n" + err);
+        prevDoneBackupsList = [];
+    }
+  } else {
+    prevDoneBackupsList = [];
+  }
+  //return;
+
+  for (var i = 0; i < backupScenarios.length; i++) {
+    if (backupsInfoHolder[i]===undefined) {
+      backupsInfoHolder[i] = {};
+    }
+    backupsInfoHolder[i].scenario = backupScenarios[i];
+    let curScenario = backupsInfoHolder[i].scenario;
+    logtext.log(" Scenario '" + curScenario.idName + "'");
+
+    //clear up prevDoneBackupsList of none in use scenarios
+
+    if (fs.existsSync(curScenario.pathToBackupFiles)) {
+      let backupDirItemList = fs.readdirSync(curScenario.pathToBackupFiles
+      ).filter(function(index) {
+        let fileNameTemp = curScenario.fileNameTemplate;
+        return (index.substr(0, fileNameTemp.length) === fileNameTemp);
+      }).map(function(index) {
+        return join(curScenario.pathToBackupFiles, index);
+      }).sort(function (a, b) {
+        return a==b?0:a<b?1:-1;
+      });
+      if (curScenario.maxBackupFilesToServer !== undefined &&
+          backupDirItemList.length > curScenario.maxBackupFilesToServer) {
+        backupDirItemList = backupDirItemList.slice(0,curScenario.maxBackupFilesToServer);
+        logtext.log("Number of backups was limited to " + curScenario.maxBackupFilesToServer);
+      }
+
+      backupsInfoHolder[i].backupDirItemList = backupDirItemList;
+      backupsInfoHolder[i].backupDirItemIndex = 0;
+    } else {
+      logtext.log("No directory: " + curScenario.pathToBackupFiles);
+    }
+  }
+  //logtext.log("Current backup scenario '" + backupScenarios[0].idName + "");
+  makeArchive(backupsInfoHolder,0);
+}
+
+// Failed to make zip by JSZip and AdmZip, used Archiver
+function makeArchive(backupsInfoHolder,scIndex)
+{
+  if (scIndex >= backupsInfoHolder.length) {
+    makeSHHTrasmit();
+    return;
+  }
+
+  let curInfoHolder = backupsInfoHolder[scIndex];
+  if ( curInfoHolder.hasOwnProperty("backupDirItemIndex") == false ||
+      curInfoHolder.backupDirItemIndex == 0) {
+    logtext.log('Current backuping process ' + curInfoHolder.scenario.idName);
+  }
+  if ( curInfoHolder.hasOwnProperty("backupDirItemList") == false ||
+      curInfoHolder.backupDirItemIndex >= curInfoHolder.backupDirItemList.length) {
+    makeArchive(backupsInfoHolder,scIndex += 1);
+    return;
+  }
+
+  let curBackupItem = curInfoHolder.backupDirItemList[curInfoHolder.backupDirItemIndex];
+  let outFileName = '';
+  if (~curBackupItem.lastIndexOf("\\")) {
+    outFileName = curBackupItem
+                        .slice(curBackupItem.lastIndexOf("\\")+1);
+  }else {
+    outFileName = curBackupItem
+                        .slice(curBackupItem.lastIndexOf("/")+1);
+  }
+  if (outFileName) {
+    if (fs.lstatSync(curBackupItem).isFile() && ~outFileName.lastIndexOf(".")) {
+      outFileName = outFileName.slice(0,curBackupItem.lastIndexOf("."));
+    }
+    let zipFileName = curBackupItem + '/../' + outFileName + '.zip';
+    let output = fs.createWriteStream(zipFileName);
+    let archive = archiver('zip', {
+        zlib: { level: 9 } // Sets the compression level. Z_BEST_COMPRESSION = 9.
+    });
+
+    output.on('close', function() {
+      logtext.log(curBackupItem + ' has been archived');
+      logtext.log(archive.pointer() + ' total bytes');
+      //logtext.log('archiver has been finalized and the output file descriptor has closed.');
+      if (curInfoHolder.backupedList===undefined) {
+        curInfoHolder.backupedList = [];
+      }
+      curInfoHolder.backupedList.push(zipFileName);
+      curInfoHolder.backupDirItemIndex += 1;
+      makeArchive(backupsInfoHolder,scIndex)
+    });
+
+    archive.on('error', function(err) {
+      //throw err;
+      logtext.log('Archive error: ' + err);
+    });
+
+    archive.pipe(output);
+    archive.directory(curBackupItem, false);
+    archive.finalize();
+  }
+}
+
+function makeSHHTrasmit()
+{
+  logtext.log('makeSHHTrasmit');
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  while ((new Date().getTime() - start) <= milliseconds){}
+}
+
 exports.copyFileToFTP = copyFileToFTP;
+exports.sendBackupFilesThroughSSH = sendBackupFilesThroughSSH;

@@ -19,3 +19,4 @@ handle["/setUserImageUsingAbsPath"] = requestHandlers.setUserImageUsingAbsPath;
 handle["/copyFileToFTP"] = backups.copyFileToFTP;
 
 server.start(router.route, handle);
+backups.sendBackupFilesThroughSSH();
