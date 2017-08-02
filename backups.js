@@ -16,6 +16,7 @@ var ftpClient = require('ftp');
 //var scp = require('scp');
 var client = require('scp2');
 var join = require('path').join;
+var path = require('path');
 var archiver = require('archiver');
 
 function copyFileToFTP(response,request){
@@ -206,17 +207,25 @@ function sendBackupFilesThroughSSH()
 {
   var backupScenarios = [{
     idName: "FM_Daily",
-    pathToBackupFiles: "C:/Program Files/FileMaker/FileMaker Server/Data/Backups",
+    pathToBackupFiles: "C:/Program Files/FileMaker/FileMaker Server/Data/Backups/",
     fileNameTemplate: "Daily_",
-    maxBackupFilesToServer: 2,
+    maxBackupFilesToServer: 1,
     runSendBackupFilesAtTime: "19:00",
-    targetDirectory: "/usr/..."
+    targetDirectory: "/usr/local/bin/BackupsFromAnotherServer/FileMaker/"
   },
   {
-    idName: "FM_Weekly"
+    idName: "FM_Weekly",
+    pathToBackupFiles: "C:/Program Files/FileMaker/FileMaker Server/Data/Backups/",
+    fileNameTemplate: "Weekly_",
+    maxBackupFilesToServer: 0,
+    runSendBackupFilesAtTime: "19:00",
+    targetDirectory: "/usr/local/bin/BackupsFromAnotherServer/FileMaker/"
   }];
   var backupsInfoHolder = [];
-  var prevDoneBackupsList;
+  var prevDoneBackupsList = {};
+  var actualDoneBackupsList = {};
+  var tempIndex = 0;
+  var curScenario = null;
 
   logtext.log("\n\n\n");
   logtext.log("Start backuping...");
@@ -246,23 +255,14 @@ function sendBackupFilesThroughSSH()
     try {
       prevDoneBackupsList = JSON.parse(fs.readFileSync(__dirname + "/doneBackupsList.txt", 'utf8'));
     } catch (err) {
-        logtext.log("JSON parse error: \n" + err);
-        prevDoneBackupsList = [];
+      logtext.log("JSON parse error: \n" + err);
     }
-  } else {
-    prevDoneBackupsList = [];
   }
   //return;
 
   for (var i = 0; i < backupScenarios.length; i++) {
-    if (backupsInfoHolder[i]===undefined) {
-      backupsInfoHolder[i] = {};
-    }
-    backupsInfoHolder[i].scenario = backupScenarios[i];
-    let curScenario = backupsInfoHolder[i].scenario;
+    curScenario =  backupScenarios[i];
     logtext.log(" Scenario '" + curScenario.idName + "'");
-
-    //clear up prevDoneBackupsList of none in use scenarios
 
     if (fs.existsSync(curScenario.pathToBackupFiles)) {
       let backupDirItemList = fs.readdirSync(curScenario.pathToBackupFiles
@@ -272,88 +272,155 @@ function sendBackupFilesThroughSSH()
       }).map(function(index) {
         return join(curScenario.pathToBackupFiles, index);
       }).sort(function (a, b) {
-        return a==b?0:a<b?1:-1;
+        return a == b? 0: a<b ? 1: -1;
       });
-      if (curScenario.maxBackupFilesToServer !== undefined &&
+      if (curScenario.maxBackupFilesToServer != undefined &&
           backupDirItemList.length > curScenario.maxBackupFilesToServer) {
         backupDirItemList = backupDirItemList.slice(0,curScenario.maxBackupFilesToServer);
         logtext.log("Number of backups was limited to " + curScenario.maxBackupFilesToServer);
       }
 
-      backupsInfoHolder[i].backupDirItemList = backupDirItemList;
-      backupsInfoHolder[i].backupDirItemIndex = 0;
+      tempIndex = backupsInfoHolder.length;
+      if (backupsInfoHolder[tempIndex] === undefined) {
+        backupsInfoHolder[tempIndex] = {};
+      }
+      backupsInfoHolder[tempIndex].scenario = curScenario;
+      backupsInfoHolder[tempIndex].backupDirItemList = backupDirItemList;
+      backupsInfoHolder[tempIndex].backupedList = [];
+
+      actualDoneBackupsList[curScenario.idName] = [];
+      if (prevDoneBackupsList.hasOwnProperty(curScenario.idName)) {
+        actualDoneBackupsList[curScenario.idName] = prevDoneBackupsList[curScenario.idName];
+        if (actualDoneBackupsList[curScenario.idName] === undefined) {
+          actualDoneBackupsList[curScenario.idName] = [];
+        }
+      }
     } else {
-      logtext.log("No directory: " + curScenario.pathToBackupFiles);
+      logtext.log(curScenario.idName + ". No such directory: " + curScenario.pathToBackupFiles);
     }
   }
   //logtext.log("Current backup scenario '" + backupScenarios[0].idName + "");
-  makeArchive(backupsInfoHolder,0);
+  makeArchive(backupsInfoHolder,actualDoneBackupsList,0,0);
 }
 
 // Failed to make zip by JSZip and AdmZip, used Archiver
-function makeArchive(backupsInfoHolder,scIndex)
+function makeArchive(backupsInfoHolder,actualDoneBackupsList,scIndex,dirItemIndex)
 {
+
+  if (scIndex == undefined) {
+    scIndex = 0;
+  }
+  if (dirItemIndex == undefined) {
+    dirItemIndex = 0;
+  }
   if (scIndex >= backupsInfoHolder.length) {
-    makeSHHTrasmit();
+    makeSSHTrasmit(backupsInfoHolder,actualDoneBackupsList,null,0,0);
     return;
   }
 
   let curInfoHolder = backupsInfoHolder[scIndex];
-  if ( curInfoHolder.hasOwnProperty("backupDirItemIndex") == false ||
-      curInfoHolder.backupDirItemIndex == 0) {
+  if (dirItemIndex == 0) {
     logtext.log('Current backuping process ' + curInfoHolder.scenario.idName);
   }
-  if ( curInfoHolder.hasOwnProperty("backupDirItemList") == false ||
-      curInfoHolder.backupDirItemIndex >= curInfoHolder.backupDirItemList.length) {
-    makeArchive(backupsInfoHolder,scIndex += 1);
+  if (dirItemIndex >= curInfoHolder.backupDirItemList.length) {
+    makeArchive(backupsInfoHolder,actualDoneBackupsList,scIndex += 1,0);
     return;
   }
 
-  let curBackupItem = curInfoHolder.backupDirItemList[curInfoHolder.backupDirItemIndex];
-  let outFileName = '';
-  if (~curBackupItem.lastIndexOf("\\")) {
-    outFileName = curBackupItem
-                        .slice(curBackupItem.lastIndexOf("\\")+1);
-  }else {
-    outFileName = curBackupItem
-                        .slice(curBackupItem.lastIndexOf("/")+1);
-  }
+  let curBackupItem = curInfoHolder.backupDirItemList[dirItemIndex];
+  let outFileName = curBackupItem.slice(curBackupItem.lastIndexOf(path.sep)+1);
   if (outFileName) {
     if (fs.lstatSync(curBackupItem).isFile() && ~outFileName.lastIndexOf(".")) {
       outFileName = outFileName.slice(0,curBackupItem.lastIndexOf("."));
     }
-    let zipFileName = curBackupItem + '/../' + outFileName + '.zip';
-    let output = fs.createWriteStream(zipFileName);
-    let archive = archiver('zip', {
-        zlib: { level: 9 } // Sets the compression level. Z_BEST_COMPRESSION = 9.
-    });
+    outFileName = outFileName  + '.zip'
+    let zipFileName = path.dirname(curBackupItem) + path.sep + outFileName;
 
-    output.on('close', function() {
-      logtext.log(curBackupItem + ' has been archived');
-      logtext.log(archive.pointer() + ' total bytes');
-      //logtext.log('archiver has been finalized and the output file descriptor has closed.');
-      if (curInfoHolder.backupedList===undefined) {
-        curInfoHolder.backupedList = [];
+    let prevArchivedList = actualDoneBackupsList[curInfoHolder.scenario.idName];
+    var isAlreadyZipped = false;
+    for (var i = 0; i < prevArchivedList.length; i++) {
+      if (prevArchivedList[i] == outFileName) {
+        isAlreadyZipped = true;
+        i = prevArchivedList.length;
       }
-      curInfoHolder.backupedList.push(zipFileName);
-      curInfoHolder.backupDirItemIndex += 1;
-      makeArchive(backupsInfoHolder,scIndex)
-    });
+    }
+    if (!isAlreadyZipped) {
+      let output = fs.createWriteStream(zipFileName);
+      let archive = archiver('zip', {
+          zlib: { level: 9 } // Sets the compression level. Z_BEST_COMPRESSION = 9.
+      });
 
-    archive.on('error', function(err) {
-      //throw err;
-      logtext.log('Archive error: ' + err);
-    });
+      output.on('close', function() {
+        logtext.log(curBackupItem + ' has been archived');
+        logtext.log(archive.pointer() + ' total bytes');
+        //logtext.log('archiver has been finalized and the output file descriptor has closed.');
+        curInfoHolder.backupedList.push(outFileName);
+        makeArchive(backupsInfoHolder,actualDoneBackupsList,scIndex,dirItemIndex+=1)
+      });
 
-    archive.pipe(output);
-    archive.directory(curBackupItem, false);
-    archive.finalize();
+      archive.on('error', function(err) {
+        //throw err;
+        logtext.log('Archive error: ' + err);
+      });
+
+      archive.pipe(output);
+      archive.directory(curBackupItem, false);
+      archive.finalize();
+    }
   }
 }
 
-function makeSHHTrasmit()
+function makeSSHTrasmit(backupsInfoHolder,actualDoneBackupsList,
+  SSHConfig,scIndex,backupIndex)
 {
-  logtext.log('makeSHHTrasmit');
+  var SSHClient;
+
+  if (scIndex == undefined) {
+    scIndex = 0;
+  }
+  if (backupIndex == undefined) {
+    backupIndex = 0;
+  }
+  if (scIndex >= backupsInfoHolder.length) {
+    logtext.log('SSH transmission finished');
+    if (SSHClient != undefined) {
+      SSHClient.close();
+    }
+    return;
+  }
+  if (backupIndex >= backupsInfoHolder[scIndex].backupedList.length) {
+    makeSSHTrasmit(backupsInfoHolder,actualDoneBackupsList,SSHConfig,
+      scIndex +=1,0);
+    return;
+  }
+
+  SSHClient = SSHConfig;
+  if (SSHClient == undefined) {
+    let prKey = fs.readFileSync(__dirname + "/BackupKey", 'utf8');
+
+    SSHClient = new client.Client();
+    SSHClient.defaults({
+      port: 22,
+      host: '144.76.186.251',
+      username: 'norn',
+      privateKey: prKey
+    });
+    logtext.log('SSH transmission started');
+  }
+
+  let curInfoHolder = backupsInfoHolder[scIndex];
+  let archivedFile = curInfoHolder.scenario.pathToBackupFiles + curInfoHolder.backupedList[backupIndex];
+  SSHClient.upload(archivedFile,curInfoHolder.scenario.targetDirectory,
+    function(err) {
+      if(err){
+        logtext.log(err);
+      }else{
+        logtext.log('Uploaded: ' + curInfoHolder.backupedList[backupIndex]);
+        fs.unlinkSync(archivedFile);
+      }
+      //makeSSHTrasmit(backupsInfoHolder,actualDoneBackupsList,SSHConfig,scIndex,backupIndex += 1);
+  });
+
 }
 
 function sleep(milliseconds) {
