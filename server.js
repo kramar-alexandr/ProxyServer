@@ -10,6 +10,7 @@ function start(route, handle) {
   }
 
   var server = http.createServer(onRequest).listen(1070);
+  //var server = httpProxy.createProxyServer(onRequest).listen(1070);
 
   server.on('clientError', (err, socket) => {
       logtext.log('HTTP/1.1 400 Bad Request');

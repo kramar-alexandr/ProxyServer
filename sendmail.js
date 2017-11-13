@@ -1,6 +1,7 @@
 var logtext = require('./logtext');
 var SMTPConnection = require('smtp-connection');
 var nodemailer = require('nodemailer');
+var fs = require('fs');
 
 function sendMail(response,request){
     logtext.log("Request handler 'sendMail' was called.");
@@ -42,7 +43,9 @@ function sendMail(response,request){
                         to: dataobj.to,
                         subject: dataobj.subject,
                         text: dataobj.message + '\n',
-                        attachments : dataobj.attachments
+                        attachments : [{filename:dataobj.filename,
+                        								path:dataobj.path,
+                        								contentType: 'text/plain'}]//dataobj.attachments
                         //html: '<p>HTML version of the ' + dataobj.message + '</p>'
                     };
                     transporter.sendMail(message, function(err){
